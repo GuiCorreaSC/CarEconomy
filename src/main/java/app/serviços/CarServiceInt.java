@@ -14,4 +14,6 @@ public interface CarServiceInt {
 	Car consultaPorCod(Integer codigo) throws SQLException;
 	List<Car> consultaPorNome(String modelo) throws SQLException;
 	List<Car> consultaTudo() throws SQLException;
+	
+	
 }

@@ -1,19 +1,34 @@
 package app.CarEconomy;
 
+import java.awt.EventQueue;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.swing.JOptionPane;
+import javax.swing.JDialog;
 
 import app.entidades.Car;
 import app.serviços.CarServiceImpl;
 import app.serviços.CarServiceInt;
+import view.CarCadastroView;
 
 public class App {
 
 	public static void main(String[] args) throws SQLException {
 
 		final CarServiceInt service = new CarServiceImpl();
+		
+			EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						CarCadastroView dialog = new CarCadastroView();
+						dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+						dialog.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		
 
 	//	int novoCar = service.cadastrar(new Car("Honda Biz", 100.0, 40.5, 36.0));
 
@@ -28,11 +43,11 @@ public class App {
 		System.out.println("Consulta por código:  ");
 		Car consultCar = service.consultaPorCod(2);
 		System.out.println(consultCar +"\n");
-*/		
+		
 		System.out.println("Consulta por nome: ");
 		List<Car> consultaNome = service.consultaPorNome("biz");
 		System.out.println(consultaNome +"\n");
-		
+	*/	
 /*		System.out.println("Consulta tudo: ");
 		List<Car> consultaTudo = service.consultaTudo();
 		System.out.println(consultaTudo +"\n");
