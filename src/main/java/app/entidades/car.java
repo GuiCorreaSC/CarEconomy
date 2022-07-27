@@ -1,6 +1,6 @@
 package app.entidades;
 
-public class car {
+public class Car {
 	
 	private Integer codCar;
 	private String modelo;
@@ -8,14 +8,20 @@ public class car {
 	private Double kmPlGas;
 	private Double kmPlAlc;
 	
-	public car(String modelo, Double motor) {
-		super();
+	public Car(String modelo, Double motor) {
 		this.modelo = modelo;
 		this.motor = motor;
 	}
 
-	public car(String modelo, Double motor, Double kmPlGas, Double kmPlAlc) {
-		super();
+	public Car(String modelo, Double motor, Double kmPlGas, Double kmPlAlc) {
+		this.modelo = modelo;
+		this.motor = motor;
+		this.kmPlGas = kmPlGas;
+		this.kmPlAlc = kmPlAlc;
+	}
+	
+	public Car(Integer codCar,String modelo, Double motor, Double kmPlGas, Double kmPlAlc) {
+		this.codCar = codCar;
 		this.modelo = modelo;
 		this.motor = motor;
 		this.kmPlGas = kmPlGas;
@@ -64,8 +70,8 @@ public class car {
 
 	@Override
 	public String toString() {
-		return "car [codCar=" + codCar + ", modelo=" + modelo + ", motor=" + motor + ", kmPlGas=" + kmPlGas
-				+ ", kmPlAlc=" + kmPlAlc + "]";
+		return "\nCódigo: " + codCar + ",\nModelo: " + modelo + ",\nMotor: " + motor + ",\nKms/L de gasolina: " + kmPlGas
+				+ ",\nKms/L de Etanol: " + kmPlAlc + ".";
 	}
 	
 	
