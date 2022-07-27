@@ -9,5 +9,8 @@ public class App {
 		
 		System.out.println("Começo");
 		
+		System.out.println("Atenção: ");
+
+		
 	}
 }
