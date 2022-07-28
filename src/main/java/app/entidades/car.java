@@ -27,6 +27,7 @@ public class Car {
 		this.kmPlGas = kmPlGas;
 		this.kmPlAlc = kmPlAlc;
 	}
+	
 
 	public Integer getCodCar() {
 		return codCar;
