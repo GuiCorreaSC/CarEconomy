@@ -65,8 +65,9 @@ public class CarServiceImpl extends Service implements CarServiceInt {
 			preparedStatement.setString(1, car.getModelo());
 			setKmPLParameter(preparedStatement, 2, car.getKmPlGas());
 			setKmPLParameter(preparedStatement, 3, car.getKmPlAlc());
-			preparedStatement.setInt(4, car.getCodCar());
-			preparedStatement.setDouble(5, car.getMotor());
+			preparedStatement.setDouble(4, car.getMotor());
+			preparedStatement.setInt(5, car.getCodCar());
+
 
 			return preparedStatement.executeUpdate();
 		}

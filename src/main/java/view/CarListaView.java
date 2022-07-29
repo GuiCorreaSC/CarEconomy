@@ -20,6 +20,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import javax.swing.SwingConstants;
 
 public class CarListaView extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -35,6 +37,7 @@ public class CarListaView extends JFrame {
 	private JTextField textField;
 	private JButton btnEditar;
 	private JButton btnExcluir;
+	private JButton btnNewButton;
 
 	public CarListaView() {
 		setSize(new Dimension(650, 450));
@@ -55,7 +58,7 @@ public class CarListaView extends JFrame {
 			panel = new JPanel();
 			panel.setBackground(Color.DARK_GRAY);
 			FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-			flowLayout.setAlignment(FlowLayout.RIGHT);
+			panel.add(getBtnNewButton());
 			panel.add(getTextField());
 			panel.add(getBtnNovo());
 			panel.add(getBtnEditar());
@@ -73,6 +76,23 @@ public class CarListaView extends JFrame {
 		return btnSair;
 	}
 
+
+	private JButton getBtnEditar() {
+		if (btnEditar == null) {
+			btnEditar = new JButton("Editar");
+			btnEditar.addActionListener(e -> controller.editarCarro());
+		}
+		return btnEditar;
+	}
+
+	private JButton getBtnExcluir() {
+		if (btnExcluir == null) {
+			btnExcluir = new JButton("Excluir");
+			btnExcluir.addActionListener(e -> controller.excluirCarro());
+		}
+		return btnExcluir;
+	}
+	
 	private JButton getBtnNovo() {
 		if (btnNovo == null) {
 			btnNovo = new JButton("Novo");
@@ -134,20 +154,14 @@ public class CarListaView extends JFrame {
 		}
 		return textField;
 	}
-
-	private JButton getBtnEditar() {
-		if (btnEditar == null) {
-			btnEditar = new JButton("Editar");
-			btnEditar.addActionListener(e -> controller.editarCarro());
+	private JButton getBtnNewButton() {
+		if (btnNewButton == null) {
+			btnNewButton = new JButton("Gasolina/Etanol");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
 		}
-		return btnEditar;
-	}
-
-	private JButton getBtnExcluir() {
-		if (btnExcluir == null) {
-			btnExcluir = new JButton("Excluir");
-			btnExcluir.addActionListener(e -> controller.excluirCarro());
-		}
-		return btnExcluir;
+		return btnNewButton;
 	}
 }

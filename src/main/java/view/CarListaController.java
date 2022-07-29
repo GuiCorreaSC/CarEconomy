@@ -17,7 +17,8 @@ import app.serviços.CarServiceInt;
 public class CarListaController {
 
 	private final CarListaView view;
-
+	
+	
 	protected CarListaController(CarListaView view) {
 		this.view = view;
 		SwingUtilities.invokeLater(this::buscaTodos);
@@ -89,10 +90,11 @@ public class CarListaController {
 	public void editarCarro() {
 		final int selectedRow = view.getTable().getSelectedRow();
 		if (selectedRow < 0) {
-			JOptionPane.showMessageDialog(view, "Selecione um carro na lista acima", "Atenção",
+			JOptionPane.showMessageDialog(view, "Selecione um veicúlo na lista acima", "Atenção",
 					JOptionPane.WARNING_MESSAGE);
 		} else {
 			final Integer codigoCarro = (Integer) getModeloTabela().getValueAt(selectedRow, 0);
+
 			abreCadastroCarro(codigoCarro);
 			buscaTodos();
 			selecionaCarroNaTabela(codigoCarro);
@@ -113,19 +115,21 @@ public class CarListaController {
 	public void excluirCarro() {
 		final int selectedRow = view.getTable().getSelectedRow();
 		if (selectedRow < 0) {
-			JOptionPane.showMessageDialog(view, "Selecione um carro na lista acima para excluir", "Atenção",
+			JOptionPane.showMessageDialog(view, "Selecione um veicúlo na lista acima para excluir", "Atenção",
 					JOptionPane.WARNING_MESSAGE);
 		} else {
 			final Integer codigoCarro = (Integer) getModeloTabela().getValueAt(selectedRow, 0);
 			try {
 				final int confirm = JOptionPane.showConfirmDialog(view,
-						"Deseja realmente excluir o carro selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
+						"Deseja realmente excluir o veicúlo selecionado?", "Confirmação", JOptionPane.YES_NO_OPTION);
 				if (confirm == JOptionPane.YES_OPTION) {
 					final CarServiceInt service = new CarServiceImpl();
 					service.excluir(codigoCarro);
+					limparTabela();
+					buscaTodos();
 				}
 			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(view, "Erro ao excluir o carro: " + e.getMessage(), "Erro",
+				JOptionPane.showMessageDialog(view, "Erro ao excluir o veicúlo: " + e.getMessage(), "Erro",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}

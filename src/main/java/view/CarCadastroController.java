@@ -3,6 +3,7 @@ package view;
 import java.util.Objects;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import app.entidades.Car;
 import app.serviços.CarServiceImpl;
@@ -34,14 +35,26 @@ public class CarCadastroController {
 				viewCadastro.getTextField_Motor().setText(carro.getMotor().toString());
 				viewCadastro.getTextField_Gasolina().setText(carro.getKmPlGas().toString());
 				viewCadastro.getTextField_Etanol().setText(carro.getKmPlAlc().toString());
-					
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+    public void limparTela() {
+    	try {
+    	viewCadastro.getTextField_Cod().setText("");
+    	viewCadastro.getTextField_Modelo().setText("");
+    	viewCadastro.getTextField_Motor().setText("");
+    	viewCadastro.getTextField_Gasolina().setText("");
+		viewCadastro.getTextField_Etanol().setText("");
+
+        viewCadastro.getTextField_Modelo().requestFocusInWindow();
+    	} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+	
 	public void salvarCarro(){
 		final CarServiceInt service = new CarServiceImpl();
 		try {
@@ -67,12 +80,12 @@ public class CarCadastroController {
 				codigoCarro = Integer.valueOf(PegaCodigo);
 			}
 			
-		//	viewCadastro.setVisible(false);
+			viewCadastro.setVisible(false);
 			
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(viewCadastro, "Erro ao cadastrar o cliente: " + e.getMessage(), "Erro",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
+	
 }

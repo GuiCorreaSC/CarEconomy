@@ -18,13 +18,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.DropMode;
+import javax.swing.ImageIcon;
+import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
+import javax.swing.JTextArea;
 
 public class CarCadastroView extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel panel_Btn;
 	private JButton btnSalvar;
-	private JButton btnLimparTudo;
 	private JPanel panel_title;
 	private JPanel panel_3;
 	private JPanel panel_Cad;
@@ -43,6 +47,9 @@ public class CarCadastroView extends JDialog {
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
 	private JButton btnNewButton;
+	private JButton btnVoltar;
+	private JButton btnLimpar;
+	private JLabel lblNewLabel_6;
 
 	public CarCadastroView() {
 		getContentPane().setBackground(Color.WHITE);
@@ -80,7 +87,8 @@ public class CarCadastroView extends JDialog {
 			panel_Btn.setBorder(new EmptyBorder(5, 5, 0, 5));
 			panel_Btn.setBackground(Color.DARK_GRAY);
 			panel_Btn.add(getBtnSalvar());
-			panel_Btn.add(getBtnNewButton_1_1());
+			panel_Btn.add(getBtnLimpar());
+			panel_Btn.add(getBtnVoltar());
 		}
 		return panel_Btn;
 	}
@@ -91,18 +99,6 @@ public class CarCadastroView extends JDialog {
 			btnNewButton.addActionListener(e -> controlador.salvarCarro());
 		}
 		return btnNewButton;
-	}
-
-	public JButton getBtnNewButton_1_1() {
-		if (btnLimparTudo == null) {
-			btnLimparTudo = new JButton("Limpar tudo");
-			btnLimparTudo.setBackground(Color.GRAY);
-			btnLimparTudo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-		}
-		return btnLimparTudo;
 	}
 
 	public JPanel getPanel_title() {
@@ -117,6 +113,7 @@ public class CarCadastroView extends JDialog {
 			gbl_panel_title.rowWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
 			panel_title.setLayout(gbl_panel_title);
 			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+			gbc_lblNewLabel_1.anchor = GridBagConstraints.LINE_START;
 			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 0);
 			gbc_lblNewLabel_1.gridx = 0;
 			gbc_lblNewLabel_1.gridy = 0;
@@ -128,10 +125,18 @@ public class CarCadastroView extends JDialog {
 	public JPanel getPanel_3() {
 		if (panel_3 == null) {
 			panel_3 = new JPanel();
-			FlowLayout flowLayout = (FlowLayout) panel_3.getLayout();
-			flowLayout.setVgap(50);
-			flowLayout.setHgap(50);
 			panel_3.setBackground(Color.DARK_GRAY);
+			GridBagLayout gbl_panel_3 = new GridBagLayout();
+			gbl_panel_3.columnWidths = new int[]{0, 133, 0};
+			gbl_panel_3.rowHeights = new int[]{30, 20, 0};
+			gbl_panel_3.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
+			gbl_panel_3.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
+			panel_3.setLayout(gbl_panel_3);
+			GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
+			gbc_lblNewLabel_6.insets = new Insets(0, 0, 5, 0);
+			gbc_lblNewLabel_6.gridx = 1;
+			gbc_lblNewLabel_6.gridy = 0;
+			panel_3.add(getLblNewLabel_6(), gbc_lblNewLabel_6);
 		}
 		return panel_3;
 	}
@@ -139,6 +144,7 @@ public class CarCadastroView extends JDialog {
 	public JPanel getPanel_Cad() {
 		if (panel_Cad == null) {
 			panel_Cad = new JPanel();
+			panel_Cad.setForeground(new Color(153, 153, 153));
 			panel_Cad.setBackground(Color.DARK_GRAY);
 			GridBagLayout gbl_panel_Cad = new GridBagLayout();
 			gbl_panel_Cad.columnWidths = new int[] { 0, 383, 0, 0 };
@@ -207,9 +213,9 @@ public class CarCadastroView extends JDialog {
 			panel_4 = new JPanel();
 			panel_4.setBackground(Color.DARK_GRAY);
 			GridBagLayout gbl_panel_4 = new GridBagLayout();
-			gbl_panel_4.columnWidths = new int[] { -5, 50 };
+			gbl_panel_4.columnWidths = new int[] { 36, 50 };
 			gbl_panel_4.rowHeights = new int[] { 0, 0, 0, 0, 50 };
-			gbl_panel_4.columnWeights = new double[] { 1.0, Double.MIN_VALUE };
+			gbl_panel_4.columnWeights = new double[] { 0.0, Double.MIN_VALUE };
 			gbl_panel_4.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 			panel_4.setLayout(gbl_panel_4);
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
@@ -230,6 +236,7 @@ public class CarCadastroView extends JDialog {
 	public JTextField getTextField_Motor() {
 		if (textField_Motor == null) {
 			textField_Motor = new JTextField();
+			textField_Motor.setText("0.0");
 			textField_Motor.setColumns(10);
 		}
 		return textField_Motor;
@@ -238,6 +245,7 @@ public class CarCadastroView extends JDialog {
 	public JTextField getTextField_Gasolina() { // campo gas
 		if (textField_Gasolina == null) {
 			textField_Gasolina = new JTextField();
+			textField_Gasolina.setText("0.0");
 			textField_Gasolina.setColumns(10);
 		}
 		return textField_Gasolina;
@@ -246,6 +254,7 @@ public class CarCadastroView extends JDialog {
 	public JTextField getTextField_Etanol() { // campo etanol
 		if (textField_Etanol == null) {
 			textField_Etanol = new JTextField();
+			textField_Etanol.setText("0.0");
 			textField_Etanol.setColumns(10);
 		}
 		return textField_Etanol;
@@ -262,13 +271,15 @@ public class CarCadastroView extends JDialog {
 	public JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("Código");
+			lblNewLabel.setForeground(new Color(153, 153, 153));
 		}
 		return lblNewLabel;
 	}
 
 	public JLabel getLblNewLabel_1() {
 		if (lblNewLabel_1 == null) {
-			lblNewLabel_1 = new JLabel("PREENCHA OS CAMPOS");
+			lblNewLabel_1 = new JLabel("                                                                                  PREENCHA OS CAMPOS");
+			lblNewLabel_1.setForeground(new Color(153, 153, 153));
 			lblNewLabel_1.setVerticalAlignment(SwingConstants.TOP);
 		}
 		return lblNewLabel_1;
@@ -277,6 +288,7 @@ public class CarCadastroView extends JDialog {
 	public JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
 			lblNewLabel_2 = new JLabel("Modelo");
+			lblNewLabel_2.setForeground(new Color(153, 153, 153));
 		}
 		return lblNewLabel_2;
 	}
@@ -284,6 +296,7 @@ public class CarCadastroView extends JDialog {
 	public JLabel getLblNewLabel_3() {
 		if (lblNewLabel_3 == null) {
 			lblNewLabel_3 = new JLabel("Motor L/CC");
+			lblNewLabel_3.setForeground(new Color(153, 153, 153));
 		}
 		return lblNewLabel_3;
 	}
@@ -291,6 +304,7 @@ public class CarCadastroView extends JDialog {
 	public JLabel getLblNewLabel_4() {
 		if (lblNewLabel_4 == null) {
 			lblNewLabel_4 = new JLabel("Gasolina KM/L");
+			lblNewLabel_4.setForeground(new Color(153, 153, 153));
 		}
 		return lblNewLabel_4;
 	}
@@ -298,11 +312,33 @@ public class CarCadastroView extends JDialog {
 	public JLabel getLblNewLabel_5() {
 		if (lblNewLabel_5 == null) {
 			lblNewLabel_5 = new JLabel("Etanol KM/L ");
+			lblNewLabel_5.setForeground(new Color(153, 153, 153));
 		}
 		return lblNewLabel_5;
 	}
 
 	public CarCadastroController getController() {
 		return controlador;
+	}
+	private JButton getBtnVoltar() {
+		if (btnVoltar == null) {
+			btnVoltar = new JButton("Voltar");
+			btnVoltar.addActionListener(e -> dispose());
+		}
+		return btnVoltar;
+	}
+	private JButton getBtnLimpar() {
+		if (btnLimpar == null) {
+			btnLimpar = new JButton("Limpar");
+			btnLimpar.addActionListener(e -> controlador.limparTela());
+		}
+		return btnLimpar;
+	}
+	private JLabel getLblNewLabel_6() {
+		if (lblNewLabel_6 == null) {
+			lblNewLabel_6 = new JLabel("");
+			lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\guitg\\Downloads\\preço-da-gasolina.gif"));
+		}
+		return lblNewLabel_6;
 	}
 }
