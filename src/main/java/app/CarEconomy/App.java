@@ -10,58 +10,57 @@ import app.entidades.Car;
 import app.serviços.CarServiceImpl;
 import app.serviços.CarServiceInt;
 import view.CarCadastroView;
+import view.CarListaView;
+import view.TesteView;
 
 public class App {
 
 	public static void main(String[] args) throws SQLException {
 
 		final CarServiceInt service = new CarServiceImpl();
-		
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						CarCadastroView dialog = new CarCadastroView();
-						dialog.setLocationRelativeTo(null);
-						dialog.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CarListaView frame = new CarListaView();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			});
-		
+			}
+		});
 
-	//	int novoCar = service.cadastrar(new Car("Honda Biz", 100.0, 40.5, 36.0));
+		/*
+		 * EventQueue.invokeLater(new Runnable() { public void run() { try {
+		 * CarCadastroView dialog = new CarCadastroView();
+		 * dialog.setLocationRelativeTo(null); dialog.setVisible(true); } catch
+		 * (Exception e) { e.printStackTrace(); } } });
+		 * 
+		 */
+		// int novoCar = service.cadastrar(new Car("Honda Biz", 100.0, 40.5, 36.0));
 
-	//	System.out.println("Novo carro cadastrado, código: " + novoCar);
+		// System.out.println("Novo carro cadastrado, código: " + novoCar);
 
-	/*	int excluirCar = service.excluir(4);      // excluir
-		if (excluirCar > 0) {
-			System.out.println("Codigo excluido: " + excluirCar +"\n");
-		}
-	*/	
-/*		System.out.println();
-		System.out.println("Consulta por código:  ");
-		Car consultCar = service.consultaPorCod(2);
-		System.out.println(consultCar +"\n");
-		
-		System.out.println("Consulta por nome: ");
-		List<Car> consultaNome = service.consultaPorNome("biz");
-		System.out.println(consultaNome +"\n");
-	*/	
-/*		System.out.println("Consulta tudo: ");
-		List<Car> consultaTudo = service.consultaTudo();
-		System.out.println(consultaTudo +"\n");
-		final Car carEditar = new Car(
-		
-		int editcar = service.editar(new Car("Uno Millie", 1.0, 14.5, 10.3));
-		if (editcar > 0) {
-			System.out.println("Codigo editato: " + editcar);
-		}
+		/*
+		 * int excluirCar = service.excluir(4); // excluir if (excluirCar > 0) {
+		 * System.out.println("Codigo excluido: " + excluirCar +"\n"); }
+		 */
+		/*
+		 * System.out.println(); System.out.println("Consulta por código:  "); Car
+		 * consultCar = service.consultaPorCod(2); System.out.println(consultCar +"\n");
+		 * 
+		 * System.out.println("Consulta por nome: "); List<Car> consultaNome =
+		 * service.consultaPorNome("biz"); System.out.println(consultaNome +"\n");
+		 */
+		/*
+		 * System.out.println("Consulta tudo: "); List<Car> consultaTudo =
+		 * service.consultaTudo(); System.out.println(consultaTudo +"\n"); final Car
+		 * carEditar = new Car(
+		 * 
+		 * int editcar = service.editar(new Car("Uno Millie", 1.0, 14.5, 10.3)); if
+		 * (editcar > 0) { System.out.println("Codigo editato: " + editcar); }
+		 * 
+		 */
 
-*/		
-		
-		
-		
 		/*
 		 * JOptionPane.showMessageDialog(null,
 		 * "Como calcular o consumo “pela bomba”? \r\n" +

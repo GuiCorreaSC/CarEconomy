@@ -24,14 +24,14 @@ public class CarCadastroController {
 		}
 	}
 
-	private void buscaCarroPorCodigo(Integer codigo) {
+	public void buscaCarroPorCodigo(Integer codigo) {
 		final CarServiceInt service = new CarServiceImpl();
 		try {
 			final Car carro = service.consultaPorCod(codigo);
 			if (Objects.nonNull(carro)) {
 				viewCadastro.getTextField_Cod().setText(carro.getCodCar().toString());
 				viewCadastro.getTextField_Modelo().setText(carro.getModelo());
-				viewCadastro.getTextField_Motor().setText(carro.getModelo());
+				viewCadastro.getTextField_Motor().setText(carro.getMotor().toString());
 				viewCadastro.getTextField_Gasolina().setText(carro.getKmPlGas().toString());
 				viewCadastro.getTextField_Etanol().setText(carro.getKmPlAlc().toString());
 					
